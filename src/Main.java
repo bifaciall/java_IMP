@@ -1,8 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println(modwithbigexponents(5,11,7));
+        System.out.println(otheralg(5,11,7));
     }
-    private static long modwithbigexponents(int b, int e, int m) {
+    /*private static long modwithbigexponents(int b, int e, int m) {
         long result = 1;
         int remainder = b%m;// Calculate b % m, initially set as the remainder
         while(e != 0){
@@ -15,5 +15,17 @@ public class Main {
             System.out.printf("result %d, remainder %d, exponent %d\n", result, remainder, e);
         }
         return result %m; //return final result mod m, so that result < m-1
+    }*/
+    public static int otheralg(int b, int e, int m) {
+        int rem = b % m;
+        int result = 1;
+        String bin = Integer.toBinaryString(e);
+        for(int i = 0; i < bin.length(); i++){
+            if(bin.charAt(bin.length()-(i+1)) == '1'){
+                result = (result * rem) % m;
+            }
+            rem = (rem * rem) % m;
+        }
+        return result;
     }
 }
